@@ -148,11 +148,11 @@
       repeating-linear-gradient(90deg, transparent 0 23px, rgba(255,255,255,0.04) 23px 24px);
     display: grid; place-items: center; font-family: var(--mono); color: var(--muted); font-size: 12px; padding: 0 16px; text-align: center;
   }
-  .card.big .thumb { height: 340px; }
+  .card.big .thumb { height: 420px; }
   .card .thumb { position: relative; overflow: hidden; height: 220px; }
   .card .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
   .card:hover .thumb img { transform: scale(1.04); }
-  .card .thumb .cap { position: absolute; left: 12px; bottom: 12px; padding: 4px 10px; border-radius: 6px; background: rgba(7,8,11,0.8); backdrop-filter: blur(6px); color: var(--accent); font-size: 11px; }
+  .card .thumb .cap { position: absolute; right: 12px; bottom: 12px; padding: 4px 10px; border-radius: 6px; background: rgba(7,8,11,0.8); backdrop-filter: blur(6px); color: var(--accent); font-size: 11px; }
   .card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
   .card h3 { font-size: 24px; letter-spacing: -0.01em; }
   .card .yr { font-family: var(--mono); font-size: 12px; color: var(--muted); }
@@ -217,6 +217,7 @@
   @media (max-width: 800px) {
     .about-grid, .projects { grid-template-columns: 1fr; }
     .card.big { grid-column: auto; }
+    .card .thumb, .card.big .thumb { height: 200px; }
     .stats, .achv { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     nav a.hide-sm { display: none; }
     nav { font-size: 12px; } nav a { padding: 8px 10px; }
@@ -298,7 +299,7 @@
     <div class="projects">
       <a class="card big reveal" href="https://github.com/AryanBhimani15/SpendWise" target="_blank" rel="noopener">
         <span class="arrow">↗</span>
-        <div class="thumb"><img src="img/spendwise.webp" alt="SpendWise financial dashboard with spending breakdown and monthly trend" loading="lazy" width="1140" height="425"><span class="cap">// showcased at mumbai tech week · atlas booth</span></div>
+        <div class="thumb"><img src="img/spendwise.webp" alt="SpendWise spending dashboard showing rewards missed, potential savings and spending by category" loading="lazy" width="1320" height="570"><span class="cap">// showcased at mumbai tech week · atlas booth</span></div>
         <div class="top"><h3>SpendWise</h3><span class="yr">fintech / ml</span></div>
         <p>Credit card rewards optimizer. Flask platform that ingests PDF, CSV and XLSX statements, categorises transactions with TF-IDF + Multinomial Naive Bayes, visualises spending and compares rewards across 25+ credit cards.</p>
         <div class="tags"><span>Python</span><span>Flask</span><span>scikit-learn</span><span>Pandas</span></div>
