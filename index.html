@@ -148,7 +148,11 @@
       repeating-linear-gradient(90deg, transparent 0 23px, rgba(255,255,255,0.04) 23px 24px);
     display: grid; place-items: center; font-family: var(--mono); color: var(--muted); font-size: 12px; padding: 0 16px; text-align: center;
   }
-  .card.big .thumb { height: 260px; }
+  .card.big .thumb { height: 340px; }
+  .card .thumb { position: relative; overflow: hidden; height: 220px; }
+  .card .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+  .card:hover .thumb img { transform: scale(1.04); }
+  .card .thumb .cap { position: absolute; left: 12px; bottom: 12px; padding: 4px 10px; border-radius: 6px; background: rgba(7,8,11,0.8); backdrop-filter: blur(6px); color: var(--accent); font-size: 11px; }
   .card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
   .card h3 { font-size: 24px; letter-spacing: -0.01em; }
   .card .yr { font-family: var(--mono); font-size: 12px; color: var(--muted); }
@@ -294,28 +298,28 @@
     <div class="projects">
       <a class="card big reveal" href="https://github.com/AryanBhimani15/SpendWise" target="_blank" rel="noopener">
         <span class="arrow">↗</span>
-        <div class="thumb">// showcased at mumbai tech week · atlas booth</div>
+        <div class="thumb"><img src="img/spendwise.webp" alt="SpendWise financial dashboard with spending breakdown and monthly trend" loading="lazy" width="1140" height="425"><span class="cap">// showcased at mumbai tech week · atlas booth</span></div>
         <div class="top"><h3>SpendWise</h3><span class="yr">fintech / ml</span></div>
         <p>Credit card rewards optimizer. Flask platform that ingests PDF, CSV and XLSX statements, categorises transactions with TF-IDF + Multinomial Naive Bayes, visualises spending and compares rewards across 25+ credit cards.</p>
         <div class="tags"><span>Python</span><span>Flask</span><span>scikit-learn</span><span>Pandas</span></div>
       </a>
       <a class="card reveal" href="https://github.com/AryanBhimani15/OCR" target="_blank" rel="noopener">
         <span class="arrow">↗</span>
-        <div class="thumb">// pdf → validated json</div>
+        <div class="thumb"><img src="img/ocr.webp" alt="Waybill OCR review screen showing extracted, validated fields next to the document" loading="lazy" width="1200" height="750"><span class="cap">// pdf → validated json</span></div>
         <div class="top"><h3>Airway Bill OCR</h3><span class="yr">document ai</span></div>
         <p>Local-first pipeline that turns airway-bill PDFs and images into structured, validated JSON. Layout alignment, ambiguity flags and browser correction, no paid cloud-AI APIs.</p>
         <div class="tags"><span>FastAPI</span><span>OpenCV</span><span>Tesseract</span><span>PyMuPDF</span></div>
       </a>
       <a class="card reveal" href="https://github.com/AryanBhimani15/LifeOS" target="_blank" rel="noopener">
         <span class="arrow">↗</span>
-        <div class="thumb">// natural language → confirmed actions</div>
+        <div class="thumb"><img src="img/lifeos.webp" alt="LifeOS Today dashboard with tasks, notes and quick capture" loading="lazy" width="1200" height="757"><span class="cap">// natural language → confirmed actions</span></div>
         <div class="top"><h3>LifeOS</h3><span class="yr">full-stack ai</span></div>
         <p>AI personal command center with a mobile companion. Natural language becomes validated, user-confirmed actions across tasks, goals, habits, notes and expenses.</p>
         <div class="tags"><span>Next.js</span><span>PostgreSQL</span><span>TypeScript</span></div>
       </a>
       <a class="card big reveal" href="https://github.com/AryanBhimani15/CartPilot" target="_blank" rel="noopener">
         <span class="arrow">↗</span>
-        <div class="thumb">// agent proposes · policy gates · user confirms</div>
+        <div class="thumb"><img src="img/cartpilot.webp" alt="CartPilot storefront showing running shoe results picked by the agent" loading="lazy" width="1200" height="750"><span class="cap">// agent proposes · policy gates · user confirms</span></div>
         <div class="top"><h3>CartPilot AI</h3><span class="yr">agentic ai</span></div>
         <p>Agentic commerce system with deterministic catalog logic, atomic stock reservation, price snapshots and policy-gated confirmation flows, so the agent can shop without going rogue.</p>
         <div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>Agents</span></div>
