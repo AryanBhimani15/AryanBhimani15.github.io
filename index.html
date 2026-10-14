@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aryan Bhimani</title>
+<meta name="description" content="Portfolio of Aryan Bhimani — developer, builder, tinkerer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07080b;
+    --bg-2: #0d0f14;
+    --card: rgba(255,255,255,0.03);
+    --line: rgba(255,255,255,0.08);
+    --text: #e6e8ee;
+    --muted: #8a90a0;
+    --accent: #7cf3c0;
+    --accent-2: #7aa2ff;
+    --glow: rgba(124,243,192,0.35);
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --sans: "Space Grotesk", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+  a { color: inherit; text-decoration: none; }
+
+  /* background canvas + spotlight */
+  #net { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .spot {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 30%), rgba(124,243,192,0.07), transparent 60%);
+  }
+  .grain {
+    position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: .05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  main, nav, footer { position: relative; z-index: 3; }
+
+  /* nav */
+  nav {
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 4px; align-items: center;
+    padding: 6px; border: 1px solid var(--line); border-radius: 999px;
+    background: rgba(13,15,20,0.7); backdrop-filter: blur(12px);
+    font-family: var(--mono); font-size: 13px; z-index: 50;
+    max-width: calc(100% - 32px);
+  }
+  nav a { padding: 8px 14px; border-radius: 999px; color: var(--muted); transition: color .2s, background .2s; white-space: nowrap; }
+  nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+  nav .k {
+    margin-left: 4px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px;
+    color: var(--muted); cursor: pointer; background: none; font: inherit;
+  }
+  nav .k:hover { color: var(--accent); border-color: var(--accent); }
+
+  section { max-width: 1100px; margin: 0 auto; padding: 120px 24px; }
+  .label {
+    font-family: var(--mono); font-size: 13px; color: var(--accent);
+    letter-spacing: .08em; margin-bottom: 16px; display: block;
+  }
+  h2 { font-size: clamp(32px, 5vw, 52px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 48px; }
+
+  /* hero */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 140px; }
+  .status {
+    display: inline-flex; align-items: center; gap: 10px; width: fit-content;
+    font-family: var(--mono); font-size: 13px; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-bottom: 32px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 50% { opacity: .35; } }
+  .hero h1 {
+    font-size: clamp(48px, 10vw, 128px); line-height: .95; letter-spacing: -0.04em; font-weight: 700;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent));
+    background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shine 6s linear infinite;
+  }
+  @keyframes shine { to { background-position: 200% center; } }
+  .scramble { font-family: var(--mono); color: var(--muted); font-size: clamp(16px, 2.2vw, 22px); margin-top: 28px; min-height: 1.6em; }
+  .scramble .c { color: var(--accent); }
+  .cursor { display: inline-block; width: .6em; height: 1.1em; background: var(--accent); vertical-align: -3px; margin-left: 2px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .cta { display: flex; gap: 12px; margin-top: 48px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono); font-size: 14px; padding: 14px 22px; border-radius: 10px;
+    border: 1px solid var(--line); transition: all .25s; display: inline-flex; gap: 8px; align-items: center;
+  }
+  .btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 700; }
+  .btn.primary:hover { box-shadow: 0 0 32px var(--glow); transform: translateY(-2px); }
+  .btn:not(.primary):hover { border-color: var(--accent); color: var(--accent); }
+  .scroll-hint { position: absolute; bottom: 32px; left: 24px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  /* about */
+  .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
+  .about-grid p { color: var(--muted); font-size: 18px; margin-bottom: 18px; }
+  .about-grid p strong { color: var(--text); font-weight: 500; }
+  .term {
+    border: 1px solid var(--line); border-radius: 14px; background: var(--bg-2);
+    font-family: var(--mono); font-size: 13px; overflow: hidden;
+  }
+  .term-bar { display: flex; gap: 6px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  .term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #2a2e38; }
+  .term-bar i:nth-child(1) { background: #ff5f57; } .term-bar i:nth-child(2) { background: #febc2e; } .term-bar i:nth-child(3) { background: #28c840; }
+  .term-body { padding: 18px; line-height: 1.9; }
+  .term-body .p { color: var(--accent); }
+  .term-body .k2 { color: var(--accent-2); }
+  .term-body .s { color: #f0c27b; }
+  .term-body .m { color: var(--muted); }
+
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: 64px; }
+  .stat { background: var(--bg); padding: 28px; }
+  .stat b { font-size: 40px; display: block; letter-spacing: -0.03em; }
+  .stat span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  /* projects */
+  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .card {
+    position: relative; border: 1px solid var(--line); border-radius: 16px; padding: 28px;
+    background: var(--card); overflow: hidden; transition: transform .3s, border-color .3s;
+    transform-style: preserve-3d;
+  }
+  .card::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
+    background: radial-gradient(400px circle at var(--cx, 50%) var(--cy, 50%), rgba(124,243,192,0.12), transparent 50%);
+  }
+  .card:hover { border-color: rgba(124,243,192,0.4); }
+  .card:hover::before { opacity: 1; }
+  .card.big { grid-column: span 2; }
+  .card .thumb {
+    height: 180px; border-radius: 10px; margin-bottom: 24px; border: 1px solid var(--line);
+    background:
+      linear-gradient(135deg, rgba(124,243,192,0.15), rgba(122,162,255,0.15)),
+      repeating-linear-gradient(0deg, transparent 0 23px, rgba(255,255,255,0.04) 23px 24px),
+      repeating-linear-gradient(90deg, transparent 0 23px, rgba(255,255,255,0.04) 23px 24px);
+    display: grid; place-items: center; font-family: var(--mono); color: var(--muted); font-size: 12px;
+  }
+  .card.big .thumb { height: 260px; }
+  .card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .card h3 { font-size: 24px; letter-spacing: -0.01em; }
+  .card .yr { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .card p { color: var(--muted); margin: 10px 0 18px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tags span { font-family: var(--mono); font-size: 11px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+  .card .arrow { position: absolute; top: 24px; right: 24px; font-family: var(--mono); color: var(--accent); opacity: 0; transform: translate(-6px, 6px); transition: all .3s; }
+  .card:hover .arrow { opacity: 1; transform: none; }
+
+  /* skills marquee */
+  .marquee { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); position: relative; z-index: 3; }
+  .marquee-track { display: flex; gap: 48px; width: max-content; animation: scroll 40s linear infinite; font-family: var(--mono); font-size: 18px; color: var(--muted); }
+  .marquee-track span::before { content: "◆ "; color: var(--accent); }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* experience */
+  .timeline { border-left: 1px solid var(--line); padding-left: 32px; }
+  .job { position: relative; padding-bottom: 48px; }
+  .job::before { content: ""; position: absolute; left: -38px; top: 8px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+  .job .when { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  .job h3 { font-size: 22px; margin: 4px 0; }
+  .job h3 span { color: var(--muted); font-weight: 400; }
+  .job p { color: var(--muted); max-width: 680px; }
+
+  /* contact */
+  .contact { text-align: center; padding-bottom: 80px; }
+  .contact h2 { font-size: clamp(40px, 8vw, 96px); margin-bottom: 24px; }
+  .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 40px; font-size: 18px; }
+  .email {
+    font-family: var(--mono); font-size: clamp(16px, 3vw, 24px); padding: 18px 28px;
+    border: 1px solid var(--line); border-radius: 14px; display: inline-flex; gap: 12px; align-items: center;
+    cursor: pointer; transition: all .25s; background: var(--card); color: var(--text);
+  }
+  .email:hover { border-color: var(--accent); box-shadow: 0 0 40px var(--glow); }
+  .socials { display: flex; justify-content: center; gap: 24px; margin-top: 40px; font-family: var(--mono); font-size: 14px; flex-wrap: wrap; }
+  .socials a { color: var(--muted); transition: color .2s; }
+  .socials a:hover { color: var(--accent); }
+  footer { text-align: center; padding: 32px 24px; font-family: var(--mono); font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* command palette */
+  .palette-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 100; display: none; align-items: flex-start; justify-content: center; padding: 15vh 16px 0; }
+  .palette-bg.open { display: flex; }
+  .palette { width: 100%; max-width: 560px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.6); font-family: var(--mono); }
+  .palette input { width: 100%; background: none; border: 0; border-bottom: 1px solid var(--line); padding: 18px 20px; color: var(--text); font: inherit; font-size: 15px; outline: none; }
+  .palette ul { list-style: none; max-height: 320px; overflow-y: auto; padding: 8px; }
+  .palette li { padding: 12px 14px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; color: var(--muted); font-size: 14px; }
+  .palette li.active { background: rgba(124,243,192,0.1); color: var(--accent); }
+  .palette li small { opacity: .6; }
+
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 80px); background: var(--accent); color: var(--bg); font-family: var(--mono); font-size: 13px; padding: 10px 18px; border-radius: 8px; transition: transform .3s; z-index: 120; }
+  .toast.show { transform: translate(-50%, 0); }
+
+  @media (max-width: 800px) {
+    .about-grid, .projects { grid-template-columns: 1fr; }
+    .card.big { grid-column: auto; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    nav a.hide-sm { display: none; }
+    section { padding: 96px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<canvas id="net"></canvas>
+<div class="spot"></div>
+<div class="grain"></div>
+
+<nav>
+  <a href="#top">~/aryan</a>
+  <a href="#about" class="hide-sm">about</a>
+  <a href="#work">work</a>
+  <a href="#experience" class="hide-sm">exp</a>
+  <a href="#contact">contact</a>
+  <button class="k" id="openPalette" aria-label="Open command palette">⌘K</button>
+</nav>
+
+<main id="top">
+  <section class="hero">
+    <div class="status"><span class="dot"></span> available for new projects</div>
+    <h1>Aryan<br><span class="grad">Bhimani.</span></h1>
+    <div class="scramble"><span class="c">&gt;</span> <span id="role"></span><span class="cursor"></span></div>
+    <div class="cta">
+      <a href="#work" class="btn primary">view my work →</a>
+      <a href="#contact" class="btn">get in touch</a>
+      <a href="resume.pdf" class="btn">resume.pdf ↓</a>
+    </div>
+    <div class="scroll-hint">scroll ↓ · press ⌘K</div>
+  </section>
+
+  <section id="about">
+    <span class="label reveal">01 / about</span>
+    <h2 class="reveal">I build things for the web<br>and beyond.</h2>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>[Placeholder] Hi, I'm <strong>Aryan</strong> — a <strong>developer</strong> based in <strong>[Your City]</strong>. I love turning ideas into fast, polished products.</p>
+        <p>[Placeholder] Currently focused on <strong>[cloud, AI, full-stack, …]</strong>. Previously worked on <strong>[something cool]</strong>.</p>
+        <p>[Placeholder] When I'm not coding: <strong>[hobby]</strong>, <strong>[hobby]</strong>, and <strong>[hobby]</strong>.</p>
+      </div>
+      <div class="term reveal">
+        <div class="term-bar"><i></i><i></i><i></i></div>
+        <div class="term-body">
+          <div><span class="p">$</span> cat aryan.json</div>
+          <div>{</div>
+          <div>&nbsp;&nbsp;<span class="k2">"role"</span>: <span class="s">"Developer"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="k2">"location"</span>: <span class="s">"[City]"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="k2">"stack"</span>: [<span class="s">"TS"</span>, <span class="s">"Python"</span>, <span class="s">"AWS"</span>],</div>
+          <div>&nbsp;&nbsp;<span class="k2">"coffee"</span>: <span class="s">"∞"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="k2">"open_to_work"</span>: <span class="k2">true</span></div>
+          <div>}</div>
+          <div><span class="p">$</span> <span class="m">_</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><b data-count="3">0</b><span>years coding</span></div>
+      <div class="stat"><b data-count="20">0</b><span>projects shipped</span></div>
+      <div class="stat"><b data-count="12">0</b><span>technologies</span></div>
+      <div class="stat"><b data-count="1000">0</b><span>cups of coffee</span></div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track" id="marquee"></div>
+  </div>
+
+  <section id="work">
+    <span class="label reveal">02 / selected work</span>
+    <h2 class="reveal">Things I've built.</h2>
+    <div class="projects">
+      <a class="card big reveal" href="#">
+        <span class="arrow">↗</span>
+        <div class="thumb">[ project screenshot ]</div>
+        <div class="top"><h3>Project One</h3><span class="yr">2026</span></div>
+        <p>[Placeholder] One-line description of flagship project and impact it had.</p>
+        <div class="tags"><span>React</span><span>Node</span><span>AWS</span></div>
+      </a>
+      <a class="card reveal" href="#">
+        <span class="arrow">↗</span>
+        <div class="thumb">[ screenshot ]</div>
+        <div class="top"><h3>Project Two</h3><span class="yr">2025</span></div>
+        <p>[Placeholder] Short description of what it does and why it matters.</p>
+        <div class="tags"><span>Python</span><span>FastAPI</span></div>
+      </a>
+      <a class="card reveal" href="#">
+        <span class="arrow">↗</span>
+        <div class="thumb">[ screenshot ]</div>
+        <div class="top"><h3>Project Three</h3><span class="yr">2025</span></div>
+        <p>[Placeholder] Short description of what it does and why it matters.</p>
+        <div class="tags"><span>Swift</span><span>iOS</span></div>
+      </a>
+      <a class="card reveal" href="#">
+        <span class="arrow">↗</span>
+        <div class="thumb">[ screenshot ]</div>
+        <div class="top"><h3>Project Four</h3><span class="yr">2024</span></div>
+        <p>[Placeholder] Short description of what it does and why it matters.</p>
+        <div class="tags"><span>TypeScript</span><span>Next.js</span></div>
+      </a>
+      <a class="card reveal" href="#">
+        <span class="arrow">↗</span>
+        <div class="thumb">[ screenshot ]</div>
+        <div class="top"><h3>Project Five</h3><span class="yr">2024</span></div>
+        <p>[Placeholder] Short description of what it does and why it matters.</p>
+        <div class="tags"><span>Docker</span><span>Terraform</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section id="experience">
+    <span class="label reveal">03 / experience</span>
+    <h2 class="reveal">Where I've been.</h2>
+    <div class="timeline">
+      <div class="job reveal">
+        <div class="when">2025 — present</div>
+        <h3>Role Title <span>@ Company</span></h3>
+        <p>[Placeholder] What you did, what you shipped, numbers that prove impact.</p>
+      </div>
+      <div class="job reveal">
+        <div class="when">2024 — 2025</div>
+        <h3>Role Title <span>@ Company</span></h3>
+        <p>[Placeholder] What you did, what you shipped, numbers that prove impact.</p>
+      </div>
+      <div class="job reveal">
+        <div class="when">2022 — 2024</div>
+        <h3>Degree / Program <span>@ School</span></h3>
+        <p>[Placeholder] Focus areas, honors, notable coursework or clubs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <span class="label reveal">04 / contact</span>
+    <h2 class="reveal">Let's build<br><span style="color:var(--accent)">something.</span></h2>
+    <p class="reveal">[Placeholder] Inbox always open — job, collab, or just to say hi.</p>
+    <button class="email reveal" id="copyEmail" data-email="you@example.com">you@example.com <span style="color:var(--accent)">⧉</span></button>
+    <div class="socials reveal">
+      <a href="https://github.com/YOUR_USERNAME" target="_blank" rel="noopener">github ↗</a>
+      <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank" rel="noopener">linkedin ↗</a>
+      <a href="https://x.com/YOUR_USERNAME" target="_blank" rel="noopener">x ↗</a>
+      <a href="resume.pdf">resume ↗</a>
+    </div>
+  </section>
+</main>
+
+<footer>© <span id="yr"></span> Aryan Bhimani · built from scratch · hosted on github pages</footer>
+
+<div class="palette-bg" id="paletteBg">
+  <div class="palette" role="dialog" aria-label="Command palette">
+    <input id="paletteInput" placeholder="Type a command…" autocomplete="off">
+    <ul id="paletteList"></ul>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- particle network background --- */
+  const cv = document.getElementById('net'), ctx = cv.getContext('2d');
+  let W, H, pts = [], mouse = { x: -999, y: -999 };
+  const resize = () => {
+    W = cv.width = innerWidth * devicePixelRatio; H = cv.height = innerHeight * devicePixelRatio;
+    cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px';
+    const n = Math.min(110, Math.floor(innerWidth * innerHeight / 14000));
+    pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3 }));
+  };
+  resize(); addEventListener('resize', resize);
+  addEventListener('pointermove', e => {
+    mouse.x = e.clientX * devicePixelRatio; mouse.y = e.clientY * devicePixelRatio;
+    document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+    document.documentElement.style.setProperty('--my', e.clientY + 'px');
+  });
+  const D = 140 * devicePixelRatio;
+  const draw = () => {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      const dx = p.x - mouse.x, dy = p.y - mouse.y, dm = Math.hypot(dx, dy);
+      if (dm < D) { p.x += dx / dm * 1.2; p.y += dy / dm * 1.2; }
+      ctx.fillStyle = 'rgba(124,243,192,0.5)';
+      ctx.fillRect(p.x, p.y, 2 * devicePixelRatio, 2 * devicePixelRatio);
+    }
+    for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+      const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < D) {
+        ctx.strokeStyle = `rgba(122,162,255,${(1 - d / D) * 0.18})`;
+        ctx.lineWidth = devicePixelRatio;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      }
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  };
+  draw();
+
+  /* --- scramble-typed roles --- */
+  const roles = ['software developer', 'cloud tinkerer', 'problem solver', 'building cool stuff'];
+  const el = document.getElementById('role'), glyphs = '!<>-_\\/[]{}=+*^?#01';
+  let ri = 0;
+  const scramble = (to) => new Promise(res => {
+    let f = 0; const from = el.textContent, len = Math.max(from.length, to.length);
+    const q = [...Array(len)].map((_, i) => ({ to: to[i] || '', s: Math.floor(Math.random() * 12), e: Math.floor(Math.random() * 12) + 12 }));
+    const tick = () => {
+      let out = '', done = 0;
+      q.forEach((c, i) => {
+        if (f >= c.e) { out += c.to; done++; }
+        else if (f >= c.s) out += glyphs[Math.floor(Math.random() * glyphs.length)];
+        else out += from[i] || '';
+      });
+      el.textContent = out;
+      if (done === q.length) res(); else { f++; requestAnimationFrame(tick); }
+    };
+    tick();
+  });
+  const loop = async () => { await scramble(roles[ri]); ri = (ri + 1) % roles.length; setTimeout(loop, 2400); };
+  reduce ? (el.textContent = roles[0]) : loop();
+
+  /* --- marquee --- */
+  const skills = ['JavaScript', 'TypeScript', 'Python', 'React', 'Node.js', 'AWS', 'Docker', 'Linux', 'SQL', 'Git', 'Swift', 'Figma'];
+  document.getElementById('marquee').innerHTML = [...skills, ...skills].map(s => `<span>${s}</span>`).join('');
+
+  /* --- reveal + counters --- */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+    e.target.querySelectorAll?.('[data-count]').forEach(n => {
+      const end = +n.dataset.count, t0 = performance.now();
+      const step = t => { const k = Math.min(1, (t - t0) / 1400); n.textContent = Math.floor(end * (1 - Math.pow(1 - k, 3))) + (k === 1 ? '+' : ''); if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+    io.unobserve(e.target);
+  }), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach((n, i) => { n.style.transitionDelay = (i % 4) * 70 + 'ms'; io.observe(n); });
+
+  /* --- card tilt + glow --- */
+  document.querySelectorAll('.card').forEach(c => {
+    c.addEventListener('pointermove', e => {
+      const r = c.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      c.style.setProperty('--cx', x + 'px'); c.style.setProperty('--cy', y + 'px');
+      if (!reduce) c.style.transform = `perspective(900px) rotateX(${(y / r.height - .5) * -4}deg) rotateY(${(x / r.width - .5) * 4}deg)`;
+    });
+    c.addEventListener('pointerleave', () => c.style.transform = '');
+  });
+
+  /* --- toast + copy email --- */
+  const toast = msg => { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1800); };
+  const copyEmail = () => {
+    const em = document.getElementById('copyEmail').dataset.email;
+    navigator.clipboard?.writeText(em).then(() => toast('email copied ✓'), () => location.href = 'mailto:' + em);
+  };
+  document.getElementById('copyEmail').onclick = copyEmail;
+
+  /* --- command palette --- */
+  const cmds = [
+    { t: 'Go to About', k: 'nav', run: () => location.hash = '#about' },
+    { t: 'Go to Work', k: 'nav', run: () => location.hash = '#work' },
+    { t: 'Go to Experience', k: 'nav', run: () => location.hash = '#experience' },
+    { t: 'Go to Contact', k: 'nav', run: () => location.hash = '#contact' },
+    { t: 'Copy email', k: 'action', run: copyEmail },
+    { t: 'Open GitHub', k: 'link', run: () => open('https://github.com/YOUR_USERNAME') },
+    { t: 'Open LinkedIn', k: 'link', run: () => open('https://linkedin.com/in/YOUR_USERNAME') },
+    { t: 'Download resume', k: 'link', run: () => location.href = 'resume.pdf' },
+    { t: 'Back to top', k: 'nav', run: () => scrollTo({ top: 0 }) },
+  ];
+  const bg = document.getElementById('paletteBg'), inp = document.getElementById('paletteInput'), list = document.getElementById('paletteList');
+  let sel = 0, shown = cmds;
+  const render = () => {
+    const q = inp.value.toLowerCase();
+    shown = cmds.filter(c => c.t.toLowerCase().includes(q));
+    sel = Math.min(sel, Math.max(0, shown.length - 1));
+    list.innerHTML = shown.map((c, i) => `<li class="${i === sel ? 'active' : ''}" data-i="${i}">${c.t}<small>${c.k}</small></li>`).join('') || '<li>no results</li>';
+  };
+  const openP = () => { bg.classList.add('open'); inp.value = ''; sel = 0; render(); inp.focus(); };
+  const closeP = () => bg.classList.remove('open');
+  const runSel = () => { const c = shown[sel]; if (c) { closeP(); c.run(); } };
+  document.getElementById('openPalette').onclick = openP;
+  bg.onclick = e => { if (e.target === bg) closeP(); };
+  list.onclick = e => { const li = e.target.closest('li[data-i]'); if (li) { sel = +li.dataset.i; runSel(); } };
+  inp.oninput = () => { sel = 0; render(); };
+  addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); bg.classList.contains('open') ? closeP() : openP(); }
+    if (!bg.classList.contains('open')) return;
+    if (e.key === 'Escape') closeP();
+    if (e.key === 'ArrowDown') { e.preventDefault(); sel = (sel + 1) % shown.length; render(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); sel = (sel - 1 + shown.length) % shown.length; render(); }
+    if (e.key === 'Enter') runSel();
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  console.log('%c hey, curious one 👀 — say hi: you@example.com', 'color:#7cf3c0;font-family:monospace;font-size:14px');
+})();
+</script>
+</body>
+</html>
