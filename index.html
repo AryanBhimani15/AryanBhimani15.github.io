@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aryan Bhimani</title>
-<meta name="description" content="Portfolio of Aryan Bhimani — developer, builder, tinkerer.">
+<meta name="description" content="Aryan Bhimani — AI/ML, product engineering, fintech and document AI. B.Tech CS (AI &amp; ML) student in Mumbai.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -114,7 +114,7 @@
   .term-bar { display: flex; gap: 6px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
   .term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #2a2e38; }
   .term-bar i:nth-child(1) { background: #ff5f57; } .term-bar i:nth-child(2) { background: #febc2e; } .term-bar i:nth-child(3) { background: #28c840; }
-  .term-body { padding: 18px; line-height: 1.9; }
+  .term-body { padding: 18px; line-height: 1.9; overflow-x: auto; }
   .term-body .p { color: var(--accent); }
   .term-body .k2 { color: var(--accent-2); }
   .term-body .s { color: #f0c27b; }
@@ -146,7 +146,7 @@
       linear-gradient(135deg, rgba(124,243,192,0.15), rgba(122,162,255,0.15)),
       repeating-linear-gradient(0deg, transparent 0 23px, rgba(255,255,255,0.04) 23px 24px),
       repeating-linear-gradient(90deg, transparent 0 23px, rgba(255,255,255,0.04) 23px 24px);
-    display: grid; place-items: center; font-family: var(--mono); color: var(--muted); font-size: 12px;
+    display: grid; place-items: center; font-family: var(--mono); color: var(--muted); font-size: 12px; padding: 0 16px; text-align: center;
   }
   .card.big .thumb { height: 260px; }
   .card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
@@ -172,15 +172,20 @@
   .job h3 { font-size: 22px; margin: 4px 0; }
   .job h3 span { color: var(--muted); font-weight: 400; }
   .job p { color: var(--muted); max-width: 680px; }
+  .achv { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 24px; }
+  .achv div { border: 1px solid var(--line); border-radius: 12px; padding: 16px; overflow-wrap: anywhere; background: var(--card); }
+  .achv b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .achv span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
 
   /* contact */
   .contact { text-align: center; padding-bottom: 80px; }
   .contact h2 { font-size: clamp(40px, 8vw, 96px); margin-bottom: 24px; }
   .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 40px; font-size: 18px; }
   .email {
-    font-family: var(--mono); font-size: clamp(16px, 3vw, 24px); padding: 18px 28px;
+    font-family: var(--mono); font-size: clamp(14px, 3vw, 24px); padding: 16px 20px;
     border: 1px solid var(--line); border-radius: 14px; display: inline-flex; gap: 12px; align-items: center;
     cursor: pointer; transition: all .25s; background: var(--card); color: var(--text);
+    max-width: 100%; overflow-wrap: anywhere; justify-content: center;
   }
   .email:hover { border-color: var(--accent); box-shadow: 0 0 40px var(--glow); }
   .socials { display: flex; justify-content: center; gap: 24px; margin-top: 40px; font-family: var(--mono); font-size: 14px; flex-wrap: wrap; }
@@ -208,8 +213,9 @@
   @media (max-width: 800px) {
     .about-grid, .projects { grid-template-columns: 1fr; }
     .card.big { grid-column: auto; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stats, .achv { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     nav a.hide-sm { display: none; }
+    nav { font-size: 12px; } nav a { padding: 8px 10px; }
     section { padding: 96px 16px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -234,46 +240,47 @@
 
 <main id="top">
   <section class="hero">
-    <div class="status"><span class="dot"></span> available for new projects</div>
+    <div class="status"><span class="dot"></span> B.Tech CS (AI &amp; ML) · Mumbai, India</div>
     <h1>Aryan<br><span class="grad">Bhimani.</span></h1>
     <div class="scramble"><span class="c">&gt;</span> <span id="role"></span><span class="cursor"></span></div>
     <div class="cta">
       <a href="#work" class="btn primary">view my work →</a>
       <a href="#contact" class="btn">get in touch</a>
-      <a href="resume.pdf" class="btn">resume.pdf ↓</a>
+      <a href="https://github.com/AryanBhimani15" class="btn" target="_blank" rel="noopener">github ↗</a>
     </div>
     <div class="scroll-hint">scroll ↓ · press ⌘K</div>
   </section>
 
   <section id="about">
     <span class="label reveal">01 / about</span>
-    <h2 class="reveal">I build things for the web<br>and beyond.</h2>
+    <h2 class="reveal">I like creating problems<br>for myself, then <span style="color:var(--accent)">solving them.</span></h2>
     <div class="about-grid">
       <div class="reveal">
-        <p>[Placeholder] Hi, I'm <strong>Aryan</strong> — a <strong>developer</strong> based in <strong>[Your City]</strong>. I love turning ideas into fast, polished products.</p>
-        <p>[Placeholder] Currently focused on <strong>[cloud, AI, full-stack, …]</strong>. Previously worked on <strong>[something cool]</strong>.</p>
-        <p>[Placeholder] When I'm not coding: <strong>[hobby]</strong>, <strong>[hobby]</strong>, and <strong>[hobby]</strong>.</p>
+        <p>I question how things work, turn vague or inefficient situations into <strong>concrete challenges</strong>, and keep iterating until I have something that actually works.</p>
+        <p>I'm studying <strong>Computer Science (AI &amp; ML)</strong> at <strong>Atlas SkillTech University</strong>, with hands-on work across <strong>fintech</strong>, <strong>document automation</strong>, <strong>agentic systems</strong> and <strong>AI product testing</strong>.</p>
+        <p>I'm not defined by one tech stack. My edge is how I approach a problem: understand it, challenge assumptions, break it into a system, build a version, test what fails, and keep improving until it's useful.</p>
       </div>
       <div class="term reveal">
         <div class="term-bar"><i></i><i></i><i></i></div>
         <div class="term-body">
           <div><span class="p">$</span> cat aryan.json</div>
           <div>{</div>
-          <div>&nbsp;&nbsp;<span class="k2">"role"</span>: <span class="s">"Developer"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="k2">"location"</span>: <span class="s">"[City]"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="k2">"stack"</span>: [<span class="s">"TS"</span>, <span class="s">"Python"</span>, <span class="s">"AWS"</span>],</div>
-          <div>&nbsp;&nbsp;<span class="k2">"coffee"</span>: <span class="s">"∞"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="k2">"open_to_work"</span>: <span class="k2">true</span></div>
+          <div>&nbsp;&nbsp;<span class="k2">"focus"</span>: [<span class="s">"AI/ML"</span>, <span class="s">"Product Eng"</span>],</div>
+          <div>&nbsp;&nbsp;<span class="k2">"domains"</span>: [<span class="s">"Fintech"</span>, <span class="s">"Document AI"</span>],</div>
+          <div>&nbsp;&nbsp;<span class="k2">"location"</span>: <span class="s">"Mumbai, India"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="k2">"uni"</span>: <span class="s">"Atlas SkillTech '28"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="k2">"stack"</span>: [<span class="s">"Python"</span>, <span class="s">"FastAPI"</span>, <span class="s">"Next.js"</span>],</div>
+          <div>&nbsp;&nbsp;<span class="k2">"mode"</span>: <span class="s">"frame → build → break → iterate"</span></div>
           <div>}</div>
           <div><span class="p">$</span> <span class="m">_</span></div>
         </div>
       </div>
     </div>
     <div class="stats reveal">
-      <div class="stat"><b data-count="3">0</b><span>years coding</span></div>
-      <div class="stat"><b data-count="20">0</b><span>projects shipped</span></div>
-      <div class="stat"><b data-count="12">0</b><span>technologies</span></div>
-      <div class="stat"><b data-count="1000">0</b><span>cups of coffee</span></div>
+      <div class="stat"><b data-count="4">0</b><span>flagship projects</span></div>
+      <div class="stat"><b data-count="25">0</b><span>credit cards compared</span></div>
+      <div class="stat"><b data-count="2">0</b><span>best delegate awards</span></div>
+      <div class="stat"><b data-count="2">0</b><span>internships</span></div>
     </div>
   </section>
 
@@ -285,40 +292,33 @@
     <span class="label reveal">02 / selected work</span>
     <h2 class="reveal">Things I've built.</h2>
     <div class="projects">
-      <a class="card big reveal" href="#">
+      <a class="card big reveal" href="https://github.com/AryanBhimani15/SpendWise" target="_blank" rel="noopener">
         <span class="arrow">↗</span>
-        <div class="thumb">[ project screenshot ]</div>
-        <div class="top"><h3>Project One</h3><span class="yr">2026</span></div>
-        <p>[Placeholder] One-line description of flagship project and impact it had.</p>
-        <div class="tags"><span>React</span><span>Node</span><span>AWS</span></div>
+        <div class="thumb">// showcased at mumbai tech week · atlas booth</div>
+        <div class="top"><h3>SpendWise</h3><span class="yr">fintech / ml</span></div>
+        <p>Credit card rewards optimizer. Flask platform that ingests PDF, CSV and XLSX statements, categorises transactions with TF-IDF + Multinomial Naive Bayes, visualises spending and compares rewards across 25+ credit cards.</p>
+        <div class="tags"><span>Python</span><span>Flask</span><span>scikit-learn</span><span>Pandas</span></div>
       </a>
-      <a class="card reveal" href="#">
+      <a class="card reveal" href="https://github.com/AryanBhimani15/OCR" target="_blank" rel="noopener">
         <span class="arrow">↗</span>
-        <div class="thumb">[ screenshot ]</div>
-        <div class="top"><h3>Project Two</h3><span class="yr">2025</span></div>
-        <p>[Placeholder] Short description of what it does and why it matters.</p>
-        <div class="tags"><span>Python</span><span>FastAPI</span></div>
+        <div class="thumb">// pdf → validated json</div>
+        <div class="top"><h3>Airway Bill OCR</h3><span class="yr">document ai</span></div>
+        <p>Local-first pipeline that turns airway-bill PDFs and images into structured, validated JSON. Layout alignment, ambiguity flags and browser correction, no paid cloud-AI APIs.</p>
+        <div class="tags"><span>FastAPI</span><span>OpenCV</span><span>Tesseract</span><span>PyMuPDF</span></div>
       </a>
-      <a class="card reveal" href="#">
+      <a class="card reveal" href="https://github.com/AryanBhimani15/LifeOS" target="_blank" rel="noopener">
         <span class="arrow">↗</span>
-        <div class="thumb">[ screenshot ]</div>
-        <div class="top"><h3>Project Three</h3><span class="yr">2025</span></div>
-        <p>[Placeholder] Short description of what it does and why it matters.</p>
-        <div class="tags"><span>Swift</span><span>iOS</span></div>
+        <div class="thumb">// natural language → confirmed actions</div>
+        <div class="top"><h3>LifeOS</h3><span class="yr">full-stack ai</span></div>
+        <p>AI personal command center with a mobile companion. Natural language becomes validated, user-confirmed actions across tasks, goals, habits, notes and expenses.</p>
+        <div class="tags"><span>Next.js</span><span>PostgreSQL</span><span>TypeScript</span></div>
       </a>
-      <a class="card reveal" href="#">
+      <a class="card big reveal" href="https://github.com/AryanBhimani15/CartPilot" target="_blank" rel="noopener">
         <span class="arrow">↗</span>
-        <div class="thumb">[ screenshot ]</div>
-        <div class="top"><h3>Project Four</h3><span class="yr">2024</span></div>
-        <p>[Placeholder] Short description of what it does and why it matters.</p>
-        <div class="tags"><span>TypeScript</span><span>Next.js</span></div>
-      </a>
-      <a class="card reveal" href="#">
-        <span class="arrow">↗</span>
-        <div class="thumb">[ screenshot ]</div>
-        <div class="top"><h3>Project Five</h3><span class="yr">2024</span></div>
-        <p>[Placeholder] Short description of what it does and why it matters.</p>
-        <div class="tags"><span>Docker</span><span>Terraform</span></div>
+        <div class="thumb">// agent proposes · policy gates · user confirms</div>
+        <div class="top"><h3>CartPilot AI</h3><span class="yr">agentic ai</span></div>
+        <p>Agentic commerce system with deterministic catalog logic, atomic stock reservation, price snapshots and policy-gated confirmation flows, so the agent can shop without going rogue.</p>
+        <div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>Agents</span></div>
       </a>
     </div>
   </section>
@@ -328,33 +328,43 @@
     <h2 class="reveal">Where I've been.</h2>
     <div class="timeline">
       <div class="job reveal">
-        <div class="when">2025 — present</div>
-        <h3>Role Title <span>@ Company</span></h3>
-        <p>[Placeholder] What you did, what you shipped, numbers that prove impact.</p>
+        <div class="when">May 2026</div>
+        <h3>AI / Product Intern <span>@ DeepVox AI</span></h3>
+        <p>Prompt engineering and structured product testing for AI workflows: documented edge cases, response-quality issues and failure patterns. Translated client requirements and feedback into clear product recommendations for the engineering team.</p>
       </div>
       <div class="job reveal">
-        <div class="when">2024 — 2025</div>
-        <h3>Role Title <span>@ Company</span></h3>
-        <p>[Placeholder] What you did, what you shipped, numbers that prove impact.</p>
+        <div class="when">2024 — 2028</div>
+        <h3>B.Tech Computer Science (AI &amp; ML) <span>@ Atlas SkillTech University</span></h3>
+        <p>Mumbai, India. Coursework plus CS50 Python, Coursera CNNs, Real World Math (Algebra) and TryHackMe security labs on the side.</p>
       </div>
       <div class="job reveal">
-        <div class="when">2022 — 2024</div>
-        <h3>Degree / Program <span>@ School</span></h3>
-        <p>[Placeholder] Focus areas, honors, notable coursework or clubs.</p>
+        <div class="when">2022 — 2023</div>
+        <h3>Operations Intern <span>@ Ufoam</span></h3>
+        <p>Supported manufacturing quality checks, inventory tracking and day-to-day supply-chain coordination across foam production workflows.</p>
       </div>
+      <div class="job reveal">
+        <div class="when">2020 — 2024</div>
+        <h3>School <span>@ Mumbai</span></h3>
+        <p>Head of Community Service (2022–2024). Co-Chair at SMSIMUN. 2x Best Delegate at NIS MUN for research, negotiation and public speaking.</p>
+      </div>
+    </div>
+    <div class="achv reveal">
+      <div><b>Mumbai Tech Week</b><span>SpendWise showcased at the ATLAS booth</span></div>
+      <div><b>2x Best Delegate</b><span>NIS MUN</span></div>
+      <div><b>Harvard CS50</b><span>Introductory Python certificate</span></div>
+      <div><b>TryHackMe</b><span>Hands-on cybersecurity labs</span></div>
     </div>
   </section>
 
   <section id="contact" class="contact">
     <span class="label reveal">04 / contact</span>
     <h2 class="reveal">Let's build<br><span style="color:var(--accent)">something.</span></h2>
-    <p class="reveal">[Placeholder] Inbox always open — job, collab, or just to say hi.</p>
-    <button class="email reveal" id="copyEmail" data-email="you@example.com">you@example.com <span style="color:var(--accent)">⧉</span></button>
+    <p class="reveal">Internships, collaborations, or a problem worth solving. My inbox is open.</p>
+    <button class="email reveal" id="copyEmail" data-email="aryanbhimani101@gmail.com">aryanbhimani101@gmail.com <span style="color:var(--accent)">⧉</span></button>
     <div class="socials reveal">
-      <a href="https://github.com/YOUR_USERNAME" target="_blank" rel="noopener">github ↗</a>
-      <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank" rel="noopener">linkedin ↗</a>
-      <a href="https://x.com/YOUR_USERNAME" target="_blank" rel="noopener">x ↗</a>
-      <a href="resume.pdf">resume ↗</a>
+      <a href="https://github.com/AryanBhimani15" target="_blank" rel="noopener">github ↗</a>
+      <a href="https://linkedin.com/in/aryan-bhimani/" target="_blank" rel="noopener">linkedin ↗</a>
+      <a href="mailto:aryanbhimani101@gmail.com">email ↗</a>
     </div>
   </section>
 </main>
@@ -413,7 +423,7 @@
   draw();
 
   /* --- scramble-typed roles --- */
-  const roles = ['software developer', 'cloud tinkerer', 'problem solver', 'building cool stuff'];
+  const roles = ['ai / ml engineer', 'product engineer', 'fintech builder', 'document ai tinkerer', 'problem framer'];
   const el = document.getElementById('role'), glyphs = '!<>-_\\/[]{}=+*^?#01';
   let ri = 0;
   const scramble = (to) => new Promise(res => {
@@ -435,7 +445,7 @@
   reduce ? (el.textContent = roles[0]) : loop();
 
   /* --- marquee --- */
-  const skills = ['JavaScript', 'TypeScript', 'Python', 'React', 'Node.js', 'AWS', 'Docker', 'Linux', 'SQL', 'Git', 'Swift', 'Figma'];
+  const skills = ['Python', 'Java', 'TypeScript', 'SQL', 'Flask', 'FastAPI', 'Next.js', 'PostgreSQL', 'MongoDB', 'scikit-learn', 'Pandas', 'NumPy', 'OpenCV', 'Tesseract', 'PyMuPDF', 'Azure', 'Git'];
   document.getElementById('marquee').innerHTML = [...skills, ...skills].map(s => `<span>${s}</span>`).join('');
 
   /* --- reveal + counters --- */
@@ -476,9 +486,10 @@
     { t: 'Go to Experience', k: 'nav', run: () => location.hash = '#experience' },
     { t: 'Go to Contact', k: 'nav', run: () => location.hash = '#contact' },
     { t: 'Copy email', k: 'action', run: copyEmail },
-    { t: 'Open GitHub', k: 'link', run: () => open('https://github.com/YOUR_USERNAME') },
-    { t: 'Open LinkedIn', k: 'link', run: () => open('https://linkedin.com/in/YOUR_USERNAME') },
-    { t: 'Download resume', k: 'link', run: () => location.href = 'resume.pdf' },
+    { t: 'Open GitHub', k: 'link', run: () => open('https://github.com/AryanBhimani15') },
+    { t: 'Open LinkedIn', k: 'link', run: () => open('https://linkedin.com/in/aryan-bhimani/') },
+    { t: 'Open SpendWise', k: 'project', run: () => open('https://github.com/AryanBhimani15/SpendWise') },
+    { t: 'Open CartPilot AI', k: 'project', run: () => open('https://github.com/AryanBhimani15/CartPilot') },
     { t: 'Back to top', k: 'nav', run: () => scrollTo({ top: 0 }) },
   ];
   const bg = document.getElementById('paletteBg'), inp = document.getElementById('paletteInput'), list = document.getElementById('paletteList');
@@ -506,7 +517,7 @@
   });
 
   document.getElementById('yr').textContent = new Date().getFullYear();
-  console.log('%c hey, curious one 👀 — say hi: you@example.com', 'color:#7cf3c0;font-family:monospace;font-size:14px');
+  console.log('%c hey, curious one 👀 — say hi: aryanbhimani101@gmail.com', 'color:#7cf3c0;font-family:monospace;font-size:14px');
 })();
 </script>
 </body>
